@@ -31,6 +31,22 @@ public struct BlobMenuItem: Identifiable, Hashable {
         self.offset = offset
     }
     
+    public init(systemName: String, offset: CGPoint = .zero) {
+                
+        self.selectedIcon = Image(uiImage:UIImage(systemName: systemName) ?? UIImage())
+
+        self.unselectedIcon = Image(uiImage:UIImage(systemName: systemName) ?? UIImage())
+        self.offset = offset
+    }
+    
+    public init(systemName: String, withConfiguration: UIImage.SymbolConfiguration, offset: CGPoint = .zero) {
+                
+        self.selectedIcon = Image(uiImage:UIImage(systemName: systemName, withConfiguration: withConfiguration) ?? UIImage())
+
+        self.unselectedIcon = Image(uiImage:UIImage(systemName: systemName, withConfiguration: withConfiguration) ?? UIImage())
+        self.offset = offset
+    }
+    
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
