@@ -31,19 +31,27 @@ public struct BlobMenuItem: Identifiable, Hashable {
         self.offset = offset
     }
     
-    public init(systemName: String, offset: CGPoint = .zero) {
+    public init(systemName: String, selectedSystemName:String? = nil, offset: CGPoint = .zero) {
                 
-        self.selectedIcon = Image(uiImage:UIImage(systemName: systemName) ?? UIImage())
 
         self.unselectedIcon = Image(uiImage:UIImage(systemName: systemName) ?? UIImage())
+        if(selectedSystemName==nil){
+            self.selectedIcon = self.unselectedIcon
+        }else{
+            self.selectedIcon = Image(uiImage:UIImage(systemName: selectedSystemName!) ?? UIImage())
+        }
         self.offset = offset
     }
     
-    public init(systemName: String, withConfiguration: UIImage.SymbolConfiguration, offset: CGPoint = .zero) {
-                
-        self.selectedIcon = Image(uiImage:UIImage(systemName: systemName, withConfiguration: withConfiguration) ?? UIImage())
-
+    public init(systemName: String, selectedSystemName:String? = nil, withConfiguration: UIImage.SymbolConfiguration, offset: CGPoint = .zero) {
+        
         self.unselectedIcon = Image(uiImage:UIImage(systemName: systemName, withConfiguration: withConfiguration) ?? UIImage())
+        
+        if(selectedSystemName==nil){
+            self.selectedIcon = self.unselectedIcon
+        }else{
+            self.selectedIcon = Image(uiImage:UIImage(systemName: selectedSystemName!, withConfiguration: withConfiguration) ?? UIImage())
+        }
         self.offset = offset
     }
     
